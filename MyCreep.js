@@ -7,7 +7,7 @@ class MyCreep {
     //abstract
     run() {}
 
-    isEmpty() {
+    isFull() {
         return this.creep.store.getFreeCapacity() === 0
     }
 

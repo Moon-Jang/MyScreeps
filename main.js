@@ -6,7 +6,7 @@
 // source는 room마다 1~2개 씩 있는 무한히 생성되는 자원입니다.
 // controller는 room마다 1개씩 있는 room의 핵심 요소입니다. 레벨 업 시 room에 지을 수 있는 건물이 해금됩니다.
 
-const { MyHarvest } = require("./index")
+const { MyHarvester } = require("./index")
 
 // loop 함수는 매초마다 실행됩니다.
 // 대부분의 코드가 여기 작성됩니다.
@@ -42,10 +42,9 @@ module.exports.loop = () => {
             creep.memory.role = 'harvest'
         }
     }
-    
+
     // spawn이 creep을 생산하는 코드입니다.
     for (let spawn of Object.values(Game.spawns)) {
-        
         // 이름은 중복이 불가능합니다.
         if (!Memory.creepNumber) {
             Memory.creepNumber = 1
@@ -55,7 +54,7 @@ module.exports.loop = () => {
         const name = `worker${number}`
         // spawnCreep method를 통해 creep을 생산합니다.
         // 첫번째 매개변수에서 creep의 능력을 구성하고, 두번째 매개변수에서 이름을 지어줍니다.
-        if (spawn.spawnCreep(body, name) === 0) {
+        if (spawn.spawnCreep(body, name, { memory: { role: "harvester"} }) === 0) {
             Memory.creepNumber = number + 1
         }
     }

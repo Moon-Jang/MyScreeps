@@ -1,7 +1,7 @@
 const MyCreep = require("./MyCreep")
-const MyHarvest = require("./MyHarvest")
+const MyHarvester = require("./MyHarvester")
 
 module.exports = {
     MyCreep,
-    MyHarvest
+    MyHarvester
 }
